@@ -11,7 +11,7 @@
                 if(session()->get('tipoConta') == 'EMPREGADOR'){
                     echo "<h2>Minha empresa</h2>";
                 }
-                else if(session()->get('tipoConta') == 'EMPREGADO'){
+                else if(session()->get('tipoConta') == 'ESTAGIARIO'){
                     echo "<h2>Empresas</h2>";
                 }
             ?>
