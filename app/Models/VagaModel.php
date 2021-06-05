@@ -14,4 +14,9 @@ class VagaModel extends Model
         'habilidades', 'carga_horaria', 'remuneracao', 'empresa_fk'
     ];
 
+    public function getVagasByEmpresaId($empresaID)
+    {
+        return $this->where('empresa_fk', $empresaID)->get()->getResult();
+    }
+
 }

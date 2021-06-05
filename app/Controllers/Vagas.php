@@ -63,14 +63,16 @@ class Vagas extends BaseController
     {
         $data = [];
 
-        $vagas = new VagaModel();
+        $vagasModel = new VagaModel();
         $interesseEmpresaModel = new InteresseEmpresaModel();
 
-        $vagas = $vagas->get();
+        $vagas = session()->get('tipoConta') == 'EMPREGADOR' ?
+            $vagasModel->getVagasByEmpresaId(session()->get('empresaId'))
+            : $vagasModel->get()->getResult();
 
         echo view('templates/header', $data);
         echo view('vaga-consulta', [
-            'vagas' => $vagas->getResult(),
+            'vagas' => $vagas,
         ]);
         echo view('templates/footer');
     }
