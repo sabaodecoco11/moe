@@ -28,6 +28,37 @@ class Vagas extends BaseController
         echo view('templates/footer');
     }
 
+    public function editar($vagaId)
+    {
+        $data = [];
+        helper(['form']);
+
+        $vagaModel = new VagaModel();
+
+        if ($this->request->getMethod() == 'post') {
+            $vagaData = [
+                'descricao' => $this->request->getPost('descricao'),
+                'atividades' => $this->request->getPost('atividades'),
+                'habilidades' => $this->request->getPost('habilidades'),
+                'carga_horaria' => $this->request->getPost('cargaHoraria'),
+                'semestre' => $this->request->getPost('semestre'),
+                'remuneracao' => $this->request->getPost('remuneracao'),
+            ];
+            $vagaModel->update($vagaId, $vagaData);
+
+            return redirect()->to('/consultar-vaga');
+        }
+        else{
+            $data['vaga'] = $vagaModel->where('id', $vagaId)->first();
+        }
+
+        echo view('templates/header', $data);
+        echo view('vaga-edit');
+        echo view('templates/footer');
+
+
+    }
+
     public function consultas()
     {
         $data = [];
@@ -46,7 +77,7 @@ class Vagas extends BaseController
     {
         $data = [];
         helper(['form']);
-        
+
 
         if ($this->request->getMethod() == 'post') {
             //let's do the validation here
@@ -113,7 +144,7 @@ class Vagas extends BaseController
                 $interesseEmpresa = new InteresseEmpresaModel();
                 $interesseEmpresa = $interesseEmpresa->where('empresa_fk', $empresa_fk)->get();
 
-                foreach($interesseEmpresa->getResult() as $row){
+                foreach ($interesseEmpresa->getResult() as $row) {
                     $estagiario = new EstagiarioModel();
                     $estagiario = $estagiario->where('id', $row->estagiario_fk)->first();
                     $usuario = new UserModel();
@@ -147,7 +178,7 @@ class Vagas extends BaseController
         ];
 
         $interesse->save($data);
-        
+
         $session->setFlashdata('success', 'Você marcou interesse nesta vaga!');
 
 
@@ -155,19 +186,20 @@ class Vagas extends BaseController
 
     }
 
-    public function sendingEmail($email){
+    public function sendingEmail($email)
+    {
         $to = $email;
         $subject = 'Uma nova vaga foi cadastrada!';
         $message = 'Uma empresa em que você ficou interessado abriu uma nova vaga!';
-        
+
         $email = \Config\Services::email();
- 
+
         $email->setTo($to);
         $email->setFrom('empresa@empresa.com', 'Nova vaga');
-        
+
         $email->setSubject($subject);
         $email->setMessage($message);
- 
+
         $email->send();
     }
 

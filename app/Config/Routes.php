@@ -35,6 +35,7 @@ $routes->match(['get', 'post'], 'register', 'Users::register', ['filter' => 'noa
 $routes->match(['get', 'post'], 'profile', 'Users::profile', ['filter' => 'auth']);
 $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->match(['get', 'post'],'cadastrar-vaga', 'Vagas::index', ['filter' => 'auth']);
+$routes->match(['get', 'post'],'editar-vaga/(:any)', 'Vagas::editar/$1', ['filter' => 'auth']);
 $routes->match(['get', 'post'],'consultar-vaga', 'Vagas::consultas', ['filter' => 'auth']);
 $routes->match(['get', 'post'],'criar-vaga', 'Vagas::cadastrar', ['filter' => 'auth']);
 $routes->match(['get', 'post'],'interesse-vaga', 'Vagas::interesse', ['filter' => 'auth']);

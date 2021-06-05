@@ -8,11 +8,9 @@ class Empresa extends BaseController
 	
     public function interesse()
     {
-
         $interesse = new InteresseEmpresaModel();
 
         $session = session();
-
 
         $data = [
             'empresa_fk' => $this->request->getPost('empresa'),

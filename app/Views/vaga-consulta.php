@@ -16,6 +16,15 @@
                     Habilidades:
                     <p class="text-left"><?php echo $row->habilidades; ?></p>
 
+                    <?php if(session()->get('tipoConta') == 'EMPREGADOR') : ?>
+                        <div>
+                            <form action="<?="/editar-vaga/".$row->id?>" method="get">
+                                <button type="submit" class="btn btn-success">Editar oportunidade</button>
+                            </form>
+                        </div>
+                    <?php endif; ?>
+
+
                 </div>
             </div>
         <?php } ?>

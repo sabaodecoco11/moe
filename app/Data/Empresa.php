@@ -10,14 +10,6 @@ class Empresa implements \SplSubject
     private $produtos;
     private $vagas = [];
 
-    /**
-     * Empresa constructor.
-     * @param $id
-     * @param $nome
-     * @param $endereco
-     * @param $descricao
-     * @param $produtos
-     */
     public function __construct($id, $nome, $endereco, $descricao, $produtos)
     {
         $this->id = $id;

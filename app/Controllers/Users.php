@@ -124,17 +124,23 @@ class Users extends BaseController
     private function insereEstagiario()
     {
 
-        $usuario = $this->insereUsuario();
+        try {
+            $usuario = $this->insereUsuario();
 
-        $estagiarioData = [
-            'nome' => $this->request->getVar('nome_estagiario'),
-            'ano_ingresso' => $this->request->getVar('ano_ingresso'),
-            'minicurriculo' => $this->request->getVar('minicurriculo'),
-            'usuario_fk' => $usuario->getInsertID()
-        ];
+            $estagiarioData = [
+                'nome' => $this->request->getVar('nome_estagiario'),
+                'ano_ingresso' => $this->request->getVar('ano_ingresso'),
+                'minicurriculo' => $this->request->getVar('minicurriculo'),
+                'usuario_fk' => $usuario->getInsertID(),
+                'curso_fk' => $this->request->getVar('curso')
+            ];
 
-        $estagiario = new EstagiarioModel();
-        return $estagiario->save($estagiarioData);
+            $estagiario = new EstagiarioModel();
+            return $estagiario->save($estagiarioData);
+        } catch(DatabaseException $db){
+
+        }
+        return null;
     }
 
     public
@@ -182,7 +188,7 @@ class Users extends BaseController
                 if ($tipoConta == 'EMPREGADOR') {
                     $this->insereEmpregador();
                 } else if ($tipoConta == 'ESTAGIARIO') {
-                   $this->insereEstagiario();
+                    $this->insereEstagiario();
                 }
 
                 $session = session();
@@ -190,15 +196,13 @@ class Users extends BaseController
                 return redirect()->to('/');
 
             }
-        }
-
-        //metodo get
-        else{
+        } //metodo get
+        else {
             $cursoModel = new CursoModel();
+
             // Carregando os cursos
             $data['cursos'] = $cursoModel->findAll();
         }
-
 
         echo view('templates/header', $data);
         echo view('register');
@@ -273,7 +277,7 @@ class Users extends BaseController
                     }
 
                     //muda a senha
-                    if($this->request->getPost('password') != ''){
+                    if ($this->request->getPost('password') != '') {
                         $userPayloadData = [
                             'id' => session()->get('usuarioGeralId'),
                         ];

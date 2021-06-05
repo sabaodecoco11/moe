@@ -14,17 +14,20 @@
         </div>
     </div>
     <?php if(isset($empresas)){ ?>
-        <?php foreach($empresas as $row){ ?>
+        <?php foreach($empresas as $empresa){ ?>
             <div class="row mt-2 justify-content-center">
                 <div class="col-12 col-md-6 py-2" style="background: #f3f3f3; border: 1px #ccc solid; border-radius: 10px;">
-                    <h3 class="font-bold"><?php echo $row->descricao; ?></h3>
+                    <h3 class="font-bold"><?php echo $empresa->nome; ?></h3>
+
+                    Endereco da empresa:
+                    <p class="text-left"><?php echo $empresa->endereco; ?></p>
 
                     Descrição da empresa:
-                    <p class="text-left"><?php echo $row->descricao; ?></p>
+                    <p class="text-left"><?php echo $empresa->descricao; ?></p>
 
                     <?php if(session()->get('tipoConta') == 'ESTAGIARIO'){ ?>
                         <form action="/interesse-empresa" method="post">
-                            <input type="hidden" name="empresa" value="<?php echo $row->id; ?>" />
+                            <input type="hidden" name="empresa" value="<?php echo $empresa->id; ?>" />
                             <button type="submit" class="btn btn-success">Cadastrar interesse</button>
                         </form>
                     <?php } ?>

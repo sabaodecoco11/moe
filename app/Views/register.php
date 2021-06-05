@@ -29,6 +29,7 @@
                         </div>
 
                         <div class="col-12 col-sm-6">
+                            <label class="" for="contaSelector">Tipo de conta</label>
                             <select class="form-select" aria-label="Tipo de conta" name="tipoConta" id="contaSelector">
                                 <option value=""></option>
                                 <option value="ESTAGIARIO">Estagiário</option>
@@ -72,16 +73,15 @@
                                    value="">
                         </div>
 
-                        <div class="form-group col-12 col-sm-6" id="estag0">
-                            <select class="form-select" aria-label="Curso" name="cursoNome" id="cursoSelector">
+                        <div class="form-group col-10" id="estag0">
+                            <select class="form-select" aria-label="Curso" name="curso" id="cursoSelector">
                                 <option value="">Selecione um curso</option>
                                 <?php
                                     if(isset($cursos))
                                         foreach ($cursos as $curso) {
                                             $cursoId = $curso['id'];
                                             $cursoNome = $curso['nome'];
-
-                                            echo "<option value='$cursoId'>$cursoNome</option>";
+                                            echo "<option value=$cursoId>$cursoNome</option>";
                                         }
                                 ?>
                             </select>
@@ -93,7 +93,7 @@
 <!--                                   value="">-->
 <!--                        </div>-->
 
-                        <div class="form-group" class="col-12 col-sm-6" id="estag3">
+                        <div class="form-group col-8" id="estag3">
                             <label for="ano_ingresso">Ano de ingresso</label>
                             <input type="text" class="form-control" name="ano_ingresso" id="ano_ingresso"
                                    value="">
@@ -110,10 +110,6 @@
                         <div id="blank">
 
                         </div>
-
-
-
-
 
                         <script type="application/javascript">
                             $(document).ready(function() {

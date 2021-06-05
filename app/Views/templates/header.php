@@ -25,11 +25,11 @@ $uri = service('uri');
                     <li class="nav-item <?= ($uri->getSegment(1) == 'dashboard' ? 'active' : null) ?>">
                         <a class="nav-link" href="/dashboard">Dashboard Inicial</a>
                     </li>
-                    <?php if(session()->get('tipoConta') == 'EMPREGADOR') : ?>
-                        <li class="nav-item <?= ($uri->getSegment(1) == 'consultar-vaga' ? 'active' : null) ?>">
-                            <a class="nav-link" href="/consultar-vaga">Consulte as oportunidades</a>
-                        </li>
 
+                    <li class="nav-item <?= ($uri->getSegment(1) == 'consultar-vaga' ? 'active' : null) ?>">
+                        <a class="nav-link" href="/consultar-vaga">Consulte as oportunidades</a>
+                    </li>
+                    <?php if(session()->get('tipoConta') == 'EMPREGADOR') : ?>
                         <li class="nav-item <?= ($uri->getSegment(1) == 'cadastra-vaga' ? 'active' : null) ?>">
                             <a class="nav-link" href="/cadastrar-vaga">Cadastre uma oportunidade</a>
                         </li>

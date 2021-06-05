@@ -9,9 +9,6 @@ class Dashboard extends BaseController
 		$data = [
         ];
 
-		$data['algo'] = 'Meu grande nome!';
-
-
 		$empresas = new EmpresaModel();
 
 		$empresas = $empresas->get();
