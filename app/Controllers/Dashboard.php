@@ -10,15 +10,21 @@ class Dashboard extends BaseController
 		$data = [
         ];
 
-		$empresas = new EmpresaModel();
+		$empresaModel = new EmpresaModel();
+
+		$isContaTipoEmpregador = session()->get('tipoConta') == 'EMPREGADOR';
+
+		$empresas = $isContaTipoEmpregador ?
+            $empresaModel->where('id', session()->get('empresaId'))->get()->getResult():
+            $empresaModel->get()->getResult();
 		$interesseEmpresaModel = new InteresseEmpresaModel();
 
-		$empresas = $empresas->get();
+		$interessadosImpresa = $isContaTipoEmpregador ? $interesseEmpresaModel->getNomeEstagiariosInteressadosByEmpresaId(session()->get('empresaId'))->getResult() : null;
 
 		echo view('templates/header', $data);
 		echo view('dashboard', [
-		    'empresas' => $empresas->getResult(),
-            'interessados_vagas' => $interesseEmpresaModel->getNomeEstagiariosInteressadosImpresas()->getResult()
+		    'empresas' => $empresas,
+            'interessados_vagas' => $interessadosImpresa
         ]);
 		echo view('templates/footer');
 	}

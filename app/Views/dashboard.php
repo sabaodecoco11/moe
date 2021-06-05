@@ -3,14 +3,19 @@
         <div class="col-12">
             <h1>Hello, <?= session()->get('nomeUsuario') ?></h1>
         </div>
-        <?php if (isset($algo)) : ?>
-            <?= $algo ?>
-        <?php endif; ?>
     </div>
 
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
-            <h2>Empresas</h2>
+            <?php
+                if(session()->get('tipoConta') == 'EMPREGADOR'){
+                    echo "<h2>Minha empresa</h2>";
+                }
+                else if(session()->get('tipoConta') == 'EMPREGADO'){
+                    echo "<h2>Empresas</h2>";
+                }
+            ?>
+
         </div>
     </div>
     <?php if (isset($empresas)) { ?>
