@@ -32,8 +32,52 @@
                         </form>
                     <?php } ?>
 
+                    <?php if(session()->get('tipoConta') == 'EMPREGADOR'){ ?>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header" style="padding:35px 50px;">
+                                        <h3>Estagiários inscritos na empresa <?= $empresa->nome ?></h3>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <!-- mostra os interessados -->
+                                    <div class="modal-body" style="padding:40px 50px;">
+                                        <?php
+                                        if(isset($interessados_vagas)){
+                                            foreach ($interessados_vagas as $interessado) {
+
+                                                if($interessado->empresa_id == $empresa->id)
+                                                    echo "<p>$interessado->nome</p>";
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="modal-footer">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btn-verificar" class="btn btn-primary">
+                            Verificar estagiários inscritos
+                        </button>
+                    <?php } ?>
+
                 </div>
             </div>
+
+            <script type="application/javascript">
+                $(window).ready(function (){
+                    $('#btn-verificar').click(function (){
+                        $('#myModal').modal('show');
+                    });
+                });
+            </script>
+
         <?php } ?>
     <?php } ?>
 

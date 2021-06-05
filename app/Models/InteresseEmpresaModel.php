@@ -15,5 +15,9 @@ class InteresseEmpresaModel extends Model implements \SplObserver
 
     protected $allowedFields = ['empresa_fk', 'estagiario_fk'];
 
+    public function getNomeEstagiariosInteressadosImpresas(){
+        return $this->db->query('select nome, empresa_fk as empresa_id from estagiario est join interesse_empresa ie on est.id = ie.estagiario_fk group by empresa_fk, nome;');
+    }
+
 
 }

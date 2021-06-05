@@ -64,11 +64,14 @@ class Vagas extends BaseController
         $data = [];
 
         $vagas = new VagaModel();
+        $interesseEmpresaModel = new InteresseEmpresaModel();
 
         $vagas = $vagas->get();
 
         echo view('templates/header', $data);
-        echo view('vaga-consulta', ['vagas' => $vagas->getResult()]);
+        echo view('vaga-consulta', [
+            'vagas' => $vagas->getResult(),
+        ]);
         echo view('templates/footer');
     }
 
