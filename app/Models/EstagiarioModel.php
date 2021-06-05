@@ -13,5 +13,6 @@ class EstagiarioModel extends Model implements \SplObserver
 
     protected $primaryKey = 'id';
 
-    protected $allowedFields = ['nome', 'ano_ingresso', 'minicurriculo', 'usuario_fk', 'curso_fk'];
+    protected $allowedFields = ['nome', 'ano_ingresso', 'minicurriculo',
+        'usuario_fk', 'curso_fk', 'porcentagem_conclusao'];
 }

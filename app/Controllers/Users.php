@@ -131,13 +131,14 @@ class Users extends BaseController
                 'nome' => $this->request->getVar('nome_estagiario'),
                 'ano_ingresso' => $this->request->getVar('ano_ingresso'),
                 'minicurriculo' => $this->request->getVar('minicurriculo'),
+                'porcentagem_conclusao' => $this->request->getVar('porcentagem_conclusao'),
                 'usuario_fk' => $usuario->getInsertID(),
                 'curso_fk' => $this->request->getVar('curso')
             ];
 
             $estagiario = new EstagiarioModel();
             return $estagiario->save($estagiarioData);
-        } catch(DatabaseException $db){
+        } catch (DatabaseException $db) {
 
         }
         return null;
@@ -175,7 +176,12 @@ class Users extends BaseController
                         'matches' => 'A senha de confirmação não coincide!'
                     ]
                 ],
-                'tipoConta' => ['rules' => 'required']
+                'tipoConta' => ['rules' => 'required'],
+                'porcentagem_conclusao' => [
+                    'rules' => 'required|regex_match[^(?:\d{1,2}(?:\.\d{1,2})?|100(?:\.0?0)?)$]',
+                    'regex_match' => 'A porcentagem deve ter ser no minimo 0.00 e no máximo 100.00'
+                ]
+
             ];
 
 
@@ -302,7 +308,7 @@ class Users extends BaseController
             if ($tipoConta == 'EMPREGADOR') {
                 $data['user'] = $empregadorModel->where('usuario_fk', session()->get('usuarioGeralId'))->first();
             } else if ($tipoConta == 'ESTAGIARIO') {
-                $data['user'] = $estagiarioModel->where('id', session()->get('usuarioGeralId'))->first();
+                $data['user'] = $estagiarioModel->where('usuario_fk', session()->get('usuarioGeralId'))->first();
             }
         }
 

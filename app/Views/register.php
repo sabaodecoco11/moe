@@ -99,6 +99,12 @@
                                    value="">
                         </div>
 
+                        <div class="form-group col-8" id="estag6">
+                            <label for="porcentagem_conclusao">Porcentagem conclusão do curso</label>
+                            <input type="text" class="form-control" name="porcentagem_conclusao" id="porcentagem_conclusao"
+                                   value="0.00">
+                        </div>
+
                         <div class="form-group col-12 col-sm-12" id="estag4">
                             <label for="minicurriculo">Minicurrículo</label>
                             <textarea class="form-control" name="minicurriculo" id="minicurriculo">
@@ -115,7 +121,7 @@
                             $(document).ready(function() {
                                 $.viewMap = {
                                     'EMPREGADOR' : $('#emp1, #emp2, #emp3, #emp4, #emp5'),
-                                    'ESTAGIARIO' : $('#estag1, #estag2, #estag3, #estag4, #estag0'),
+                                    'ESTAGIARIO' : $('#estag1, #estag2, #estag3, #estag4, #estag0, #estag6'),
                                 };
 
                                 // A $( document ).ready() block.

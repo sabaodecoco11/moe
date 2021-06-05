@@ -20,7 +20,7 @@
               <div class="form-group">
 
                <label for="nome">Nome</label>
-               <input type="text" class="form-control" name="nome" id="nome" value="<?= set_value('nome', $user['nome']) ?>">
+               <input type="text" class="form-control" name="nome" id="nome" value="<?= set_value('nome', isset($user) ? $user['nome'] : '') ?>">
               </div>
             </div>
 

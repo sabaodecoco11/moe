@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <h1>Hello, <?= session()->get('nomeUsuario') ?></h1>
+        <div class="col-12" style="padding-bottom: 25px; padding-top: 25px">
+            <h1>Olá, <?= session()->get('usuarioEspecifico')['nome'] ?></h1>
         </div>
     </div>
 
@@ -9,7 +9,7 @@
         <div class="col-12 col-md-6">
             <?php
                 if(session()->get('tipoConta') == 'EMPREGADOR'){
-                    echo "<h2>Minha empresa</h2>";
+                    echo "<h2>Sua empresa</h2>";
                 }
                 else if(session()->get('tipoConta') == 'ESTAGIARIO'){
                     echo "<h2>Empresas</h2>";
