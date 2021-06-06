@@ -3,6 +3,7 @@
 
 namespace App\Controllers;
 
+
 use App\Models\EstagiarioModel;
 use App\Models\InteresseEmpresaModel;
 use App\Models\VagaModel;
@@ -47,8 +48,7 @@ class Vagas extends BaseController
             $vagaModel->update($vagaId, $vagaData);
 
             return redirect()->to('/consultar-vaga');
-        }
-        else{
+        } else {
             $data['vaga'] = $vagaModel->where('id', $vagaId)->first();
         }
 
@@ -165,30 +165,6 @@ class Vagas extends BaseController
 
 
         return redirect()->to('/consultar-vaga');
-    }
-
-
-    public function interesse()
-    {
-
-        $interesse = new InteresseEstagiarioModel();
-
-        $session = session();
-
-
-        $data = [
-            'empresa_fk' => $this->request->getPost('empresa'),
-            'vaga_fk' => $this->request->getPost('vaga'),
-            'estagiario_fk' => $session->get('usuarioEspecifico')['id'],
-        ];
-
-        $interesse->save($data);
-
-        $session->setFlashdata('success', 'Você marcou interesse nesta vaga!');
-
-
-        return redirect()->to('/consultar-vaga');
-
     }
 
     public function sendingEmail($email)
