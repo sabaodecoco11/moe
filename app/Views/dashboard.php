@@ -24,13 +24,6 @@
                 <div class="col-12 col-md-6 py-2"
                      style="background: #f3f3f3; border: 1px #ccc solid; border-radius: 10px;">
 
-                    <div class="form-group mycheckboxdiv">
-                        <label>
-                            remember me
-                            <input type="checkbox" data-ng-model="rememberMe" class="pull-right mycheckbox">
-                        </label>
-                    </div>
-
                     <h3 class="font-bold"><?php echo $empresa->nome; ?></h3>
 
                     Endereco da empresa:
